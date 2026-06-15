@@ -1,0 +1,30 @@
+# Command List
+
+- Get
+  - Memory *
+  - Disk
+  - Volume *
+  - Environment
+  - Group
+  - User
+  - NetworkInterface
+  - NetworkAdapter
+  - Process
+  - Processor
+  - VideoDevice
+  - VideoConfiguration
+  - Battery
+  - Chassis
+  - BIOS
+  - OperatingSystem
+  - Package
+  - Provider
+  - Service (or Daemon)
+  - ScheduledJob (or Crontab)
+  - TimeZone
+  - Bluetooth
+  - USB
+  - CinnamonDesktop
+  - CinnamonApplet
+  - CinnamonExtension
+  - CinnamonActions

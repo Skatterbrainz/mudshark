@@ -1,0 +1,9 @@
+[package]
+name = "mudshark-core"
+version = "0.1.0"
+edition = "2021"
+description = "Shared output, formatting, JSON, and table helpers for mudshark commands."
+
+[lib]
+name = "mudshark_core"
+path = "src/lib.rs"

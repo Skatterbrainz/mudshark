@@ -1,0 +1,12 @@
+[package]
+name = "get-volume"
+version = "0.1.0"
+edition = "2021"
+description = "Report mounted filesystems (volumes): size, used, available, mountpoint."
+
+[[bin]]
+name = "get-volume"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }

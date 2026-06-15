@@ -1,0 +1,9 @@
+[workspace]
+resolver = "2"
+members = ["crates/*"]
+
+# Profiles must live at the workspace root (member profile sections are ignored).
+[profile.release]
+opt-level = "z"
+lto = true
+strip = true
