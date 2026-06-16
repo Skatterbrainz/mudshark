@@ -1,0 +1,12 @@
+[package]
+name = "get-network-interface"
+version = "0.1.0"
+edition = "2021"
+description = "Report configured OS network interfaces: state, MAC, MTU, and addresses."
+
+[[bin]]
+name = "get-network-interface"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }
