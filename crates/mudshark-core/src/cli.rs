@@ -3,6 +3,8 @@
 //! Every command parses the same output flags and emits output the same way,
 //! so behaviour stays identical across the suite.
 
+use std::io::{self, Write};
+
 use crate::json::Json;
 use crate::Format;
 
@@ -40,10 +42,29 @@ pub fn parse(help: &str) -> Result<Options, String> {
 
 /// Emit a value in the selected format. The JSON value and table string are
 /// built lazily so only the representation actually needed is produced.
+///
+/// Output goes through [`write_stdout`], which tolerates a closed reader (e.g.
+/// `... | head`) by exiting cleanly instead of panicking on a broken pipe.
 pub fn emit(format: Format, json: impl FnOnce() -> Json, table: impl FnOnce() -> String) {
-    match format {
-        Format::Table => print!("{}", table()),
-        Format::Json => println!("{}", json().to_pretty_string()),
-        Format::JsonCompact => println!("{}", json().to_compact_string()),
+    let text = match format {
+        // table::render already terminates each row with a newline.
+        Format::Table => table(),
+        Format::Json => format!("{}\n", json().to_pretty_string()),
+        Format::JsonCompact => format!("{}\n", json().to_compact_string()),
+    };
+    write_stdout(&text);
+}
+
+/// Write `text` to stdout, exiting 0 on a broken pipe and 1 on other I/O errors.
+fn write_stdout(text: &str) {
+    let stdout = io::stdout();
+    let mut handle = stdout.lock();
+    let wrote = handle.write_all(text.as_bytes()).and_then(|_| handle.flush());
+    if let Err(e) = wrote {
+        if e.kind() == io::ErrorKind::BrokenPipe {
+            std::process::exit(0);
+        }
+        eprintln!("mudshark: write error: {e}");
+        std::process::exit(1);
     }
 }
