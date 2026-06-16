@@ -1,0 +1,12 @@
+[package]
+name = "get-user"
+version = "0.1.0"
+edition = "2021"
+description = "Report local user accounts from getent passwd."
+
+[[bin]]
+name = "get-user"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }

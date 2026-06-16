@@ -1,0 +1,12 @@
+[package]
+name = "get-scheduled-job"
+version = "0.1.0"
+edition = "2021"
+description = "Report scheduled jobs from systemd timers and the user crontab."
+
+[[bin]]
+name = "get-scheduled-job"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }

@@ -1,0 +1,12 @@
+[package]
+name = "get-service"
+version = "0.1.0"
+edition = "2021"
+description = "Report systemd service units from systemctl."
+
+[[bin]]
+name = "get-service"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }
