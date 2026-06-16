@@ -1,0 +1,12 @@
+[package]
+name = "get-provider"
+version = "0.1.0"
+edition = "2021"
+description = "Report known package providers (apt, dpkg, flatpak, snap) and their versions."
+
+[[bin]]
+name = "get-provider"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }
