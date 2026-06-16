@@ -8,7 +8,10 @@
 //! a newer Rust is available this is the layer that would adopt serde/clap.
 
 pub mod bytes;
+pub mod cli;
 pub mod json;
+pub mod parse;
+pub mod proc;
 pub mod table;
 pub mod time;
 

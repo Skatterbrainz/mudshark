@@ -7,7 +7,7 @@ use std::fs;
 
 use mudshark_core::json::Json;
 use mudshark_core::table::{self, Align};
-use mudshark_core::{bytes, time, Format};
+use mudshark_core::{bytes, cli, time};
 
 struct Memory {
     total: u64,
@@ -124,37 +124,14 @@ fn to_table(r: &Report) -> String {
     table::render(&["Metric", "Size"], &rows, &[Align::Left, Align::Right])
 }
 
-fn print_help() {
-    println!("get-memory — system memory + swap usage (bytes), table or JSON.");
-    println!("Usage: get-memory [--json | -o json|table] [-h|--help]");
-    println!("Source: /proc/meminfo.");
-}
-
-fn parse_args() -> Result<Format, String> {
-    let mut format = Format::Table;
-    let mut args = std::env::args().skip(1);
-    while let Some(arg) = args.next() {
-        match arg.as_str() {
-            "--json" => format = Format::Json,
-            "-o" | "--output" => {
-                let value = args
-                    .next()
-                    .ok_or_else(|| "missing value for --output".to_string())?;
-                format = Format::parse(&value)?;
-            }
-            "-h" | "--help" => {
-                print_help();
-                std::process::exit(0);
-            }
-            other => return Err(format!("unknown argument: {other}")),
-        }
-    }
-    Ok(format)
-}
+const HELP: &str = "\
+get-memory — system memory + swap usage (bytes), table or JSON.
+Usage: get-memory [--json | -c|--compact | -o table|json|json-compact] [-h|--help]
+Source: /proc/meminfo.";
 
 fn main() {
-    let format = match parse_args() {
-        Ok(f) => f,
+    let opts = match cli::parse(HELP) {
+        Ok(o) => o,
         Err(e) => {
             eprintln!("get-memory: {e}");
             eprintln!("try 'get-memory --help'");
@@ -170,8 +147,5 @@ fn main() {
         }
     };
 
-    match format {
-        Format::Json => println!("{}", to_json(&report).to_pretty_string()),
-        Format::Table => print!("{}", to_table(&report)),
-    }
+    cli::emit(opts.format, || to_json(&report), || to_table(&report));
 }
