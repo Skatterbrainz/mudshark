@@ -1,0 +1,12 @@
+[package]
+name = "get-processor"
+version = "0.1.0"
+edition = "2021"
+description = "Report CPU information (architecture, model, cores, threads, MHz)."
+
+[[bin]]
+name = "get-processor"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }
