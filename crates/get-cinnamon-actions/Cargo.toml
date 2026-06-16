@@ -1,0 +1,12 @@
+[package]
+name = "get-cinnamon-actions"
+version = "0.1.0"
+edition = "2021"
+description = "List installed Nemo file-manager actions (*.nemo_action)."
+
+[[bin]]
+name = "get-cinnamon-actions"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }

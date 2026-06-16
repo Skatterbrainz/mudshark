@@ -1,0 +1,12 @@
+[package]
+name = "get-cinnamon-desktop"
+version = "0.1.0"
+edition = "2021"
+description = "Report the Cinnamon desktop version and key theme/interface settings."
+
+[[bin]]
+name = "get-cinnamon-desktop"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }

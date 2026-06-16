@@ -1,0 +1,12 @@
+[package]
+name = "get-bluetooth"
+version = "0.1.0"
+edition = "2021"
+description = "List Bluetooth controllers and their rfkill block state."
+
+[[bin]]
+name = "get-bluetooth"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }
