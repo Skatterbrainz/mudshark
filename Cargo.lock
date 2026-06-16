@@ -108,6 +108,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "get-package"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
 name = "get-process"
 version = "0.1.0"
 dependencies = [
@@ -116,6 +123,13 @@ dependencies = [
 
 [[package]]
 name = "get-processor"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-provider"
 version = "0.1.0"
 dependencies = [
  "mudshark-core",
@@ -151,6 +165,20 @@ dependencies = [
 
 [[package]]
 name = "get-user"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-video-configuration"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-video-device"
 version = "0.1.0"
 dependencies = [
  "mudshark-core",
