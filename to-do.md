@@ -28,3 +28,12 @@
   - CinnamonApplet *
   - CinnamonExtension *
   - CinnamonActions *
+
+## Future Enhancements
+
+- Additions:
+  - all commands: --compress (for use with --json), as well as -jc (combined)
+  - set-environment: (merge from json file, only create environment variables that are missing)
+- Updates:
+  - get-scheduled-job: include actual crontab in output
+  - get-operating-system: include Ubuntu version info when distro is Ubuntu based
