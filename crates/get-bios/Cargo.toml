@@ -1,0 +1,12 @@
+[package]
+name = "get-bios"
+version = "0.1.0"
+edition = "2021"
+description = "Report BIOS/firmware information (vendor, version, release date)."
+
+[[bin]]
+name = "get-bios"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }

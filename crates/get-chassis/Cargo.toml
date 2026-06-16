@@ -1,0 +1,12 @@
+[package]
+name = "get-chassis"
+version = "0.1.0"
+edition = "2021"
+description = "Report chassis/enclosure information (manufacturer, type, serial, state)."
+
+[[bin]]
+name = "get-chassis"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }
