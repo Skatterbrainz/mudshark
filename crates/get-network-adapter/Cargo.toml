@@ -1,0 +1,12 @@
+[package]
+name = "get-network-adapter"
+version = "0.1.0"
+edition = "2021"
+description = "Report hardware network adapters (NICs): slot, description, and kernel driver."
+
+[[bin]]
+name = "get-network-adapter"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }
