@@ -1,0 +1,12 @@
+[package]
+name = "get-timezone"
+version = "0.1.0"
+edition = "2021"
+description = "Report system timezone and clock settings from timedatectl."
+
+[[bin]]
+name = "get-timezone"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }

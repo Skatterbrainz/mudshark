@@ -1,0 +1,12 @@
+[package]
+name = "get-operating-system"
+version = "0.1.0"
+edition = "2021"
+description = "Report operating system details from /etc/os-release plus kernel info."
+
+[[bin]]
+name = "get-operating-system"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }

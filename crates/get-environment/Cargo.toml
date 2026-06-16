@@ -1,0 +1,12 @@
+[package]
+name = "get-environment"
+version = "0.1.0"
+edition = "2021"
+description = "Report the process environment variables as a table or JSON."
+
+[[bin]]
+name = "get-environment"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }
