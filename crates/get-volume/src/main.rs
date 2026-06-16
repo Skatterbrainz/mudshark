@@ -2,11 +2,9 @@
 //! Source: `df -B1 --output=...` (GNU coreutils), which runs statvfs for us
 //! and reports integer byte counts. Output helpers come from `mudshark-core`.
 
-use std::process::Command;
-
 use mudshark_core::json::Json;
 use mudshark_core::table::{self, Align};
-use mudshark_core::{bytes, time, Format};
+use mudshark_core::{bytes, cli, proc, time};
 
 struct Volume {
     source: String,
@@ -20,17 +18,10 @@ struct Volume {
 
 /// Query mounted filesystems via `df`, parsing its fixed `--output` columns.
 fn get_volumes() -> Result<Vec<Volume>, String> {
-    let output = Command::new("df")
-        .args(["-B1", "--output=source,fstype,size,used,avail,pcent,target"])
-        .output()
-        .map_err(|e| format!("failed to run df: {e}"))?;
-
-    if !output.status.success() {
-        let stderr = String::from_utf8_lossy(&output.stderr);
-        return Err(format!("df failed: {}", stderr.trim()));
-    }
-
-    let text = String::from_utf8_lossy(&output.stdout);
+    let text = proc::run(
+        "df",
+        &["-B1", "--output=source,fstype,size,used,avail,pcent,target"],
+    )?;
     let mut volumes = Vec::new();
     for line in text.lines().skip(1) {
         // Fields are single tokens except the mountpoint (last), which may
@@ -108,37 +99,14 @@ fn to_table(volumes: &[Volume]) -> String {
     )
 }
 
-fn print_help() {
-    println!("get-volume — mounted filesystems (bytes), table or JSON.");
-    println!("Usage: get-volume [--json | -o json|table] [-h|--help]");
-    println!("Source: df -B1 --output=... (GNU coreutils).");
-}
-
-fn parse_args() -> Result<Format, String> {
-    let mut format = Format::Table;
-    let mut args = std::env::args().skip(1);
-    while let Some(arg) = args.next() {
-        match arg.as_str() {
-            "--json" => format = Format::Json,
-            "-o" | "--output" => {
-                let value = args
-                    .next()
-                    .ok_or_else(|| "missing value for --output".to_string())?;
-                format = Format::parse(&value)?;
-            }
-            "-h" | "--help" => {
-                print_help();
-                std::process::exit(0);
-            }
-            other => return Err(format!("unknown argument: {other}")),
-        }
-    }
-    Ok(format)
-}
+const HELP: &str = "\
+get-volume — mounted filesystems (bytes), table or JSON.
+Usage: get-volume [--json | -c|--compact | -o table|json|json-compact] [-h|--help]
+Source: df -B1 --output=... (GNU coreutils).";
 
 fn main() {
-    let format = match parse_args() {
-        Ok(f) => f,
+    let opts = match cli::parse(HELP) {
+        Ok(o) => o,
         Err(e) => {
             eprintln!("get-volume: {e}");
             eprintln!("try 'get-volume --help'");
@@ -154,8 +122,5 @@ fn main() {
         }
     };
 
-    match format {
-        Format::Json => println!("{}", to_json(&volumes).to_pretty_string()),
-        Format::Table => print!("{}", to_table(&volumes)),
-    }
+    cli::emit(opts.format, || to_json(&volumes), || to_table(&volumes));
 }

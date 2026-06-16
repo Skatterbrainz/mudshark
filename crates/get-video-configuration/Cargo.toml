@@ -1,0 +1,12 @@
+[package]
+name = "get-video-configuration"
+version = "0.1.0"
+edition = "2021"
+description = "Report display outputs: connected, primary, and current resolution."
+
+[[bin]]
+name = "get-video-configuration"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }

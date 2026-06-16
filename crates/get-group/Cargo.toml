@@ -1,0 +1,12 @@
+[package]
+name = "get-group"
+version = "0.1.0"
+edition = "2021"
+description = "Report local groups and members from getent group."
+
+[[bin]]
+name = "get-group"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }

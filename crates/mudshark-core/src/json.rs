@@ -72,6 +72,53 @@ impl Json {
             }
         }
     }
+
+    /// Serialise to a compact single-line string (no whitespace).
+    pub fn to_compact_string(&self) -> String {
+        let mut out = String::new();
+        self.write_compact(&mut out);
+        out
+    }
+
+    fn write_compact(&self, out: &mut String) {
+        match self {
+            Json::Null => out.push_str("null"),
+            Json::Bool(b) => out.push_str(if *b { "true" } else { "false" }),
+            Json::U64(n) => out.push_str(&n.to_string()),
+            Json::I64(n) => out.push_str(&n.to_string()),
+            Json::F64(n) => out.push_str(&format_f64(*n)),
+            Json::Str(s) => write_escaped(out, s),
+            Json::Array(items) => {
+                out.push('[');
+                for (i, item) in items.iter().enumerate() {
+                    if i > 0 {
+                        out.push(',');
+                    }
+                    item.write_compact(out);
+                }
+                out.push(']');
+            }
+            Json::Object(entries) => {
+                out.push('{');
+                for (i, (key, value)) in entries.iter().enumerate() {
+                    if i > 0 {
+                        out.push(',');
+                    }
+                    write_escaped(out, key);
+                    out.push(':');
+                    value.write_compact(out);
+                }
+                out.push('}');
+            }
+        }
+    }
+}
+
+impl std::fmt::Display for Json {
+    /// `{}` formats as compact JSON, so `value.to_string()` is compact.
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(&self.to_compact_string())
+    }
 }
 
 fn indent_by(out: &mut String, level: usize) {

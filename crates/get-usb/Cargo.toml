@@ -1,0 +1,12 @@
+[package]
+name = "get-usb"
+version = "0.1.0"
+edition = "2021"
+description = "List USB devices (bus, device, vendor/product id, description)."
+
+[[bin]]
+name = "get-usb"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }

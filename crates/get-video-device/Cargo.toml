@@ -1,0 +1,12 @@
+[package]
+name = "get-video-device"
+version = "0.1.0"
+edition = "2021"
+description = "Report video/display PCI devices: slot, description, kernel driver in use."
+
+[[bin]]
+name = "get-video-device"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }

@@ -3,7 +3,182 @@
 version = 3
 
 [[package]]
+name = "get-battery"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-bios"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-bluetooth"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-chassis"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-cinnamon-actions"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-cinnamon-applet"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-cinnamon-desktop"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-cinnamon-extension"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-disk"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-environment"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-group"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
 name = "get-memory"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-network-adapter"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-network-interface"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-operating-system"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-package"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-process"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-processor"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-provider"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-scheduled-job"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-service"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-timezone"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-usb"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-user"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-video-configuration"
+version = "0.1.0"
+dependencies = [
+ "mudshark-core",
+]
+
+[[package]]
+name = "get-video-device"
 version = "0.1.0"
 dependencies = [
  "mudshark-core",

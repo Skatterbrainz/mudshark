@@ -1,0 +1,12 @@
+[package]
+name = "get-disk"
+version = "0.1.0"
+edition = "2021"
+description = "Report block devices (disks): name, type, size, model, serial, fstype, mountpoint."
+
+[[bin]]
+name = "get-disk"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }

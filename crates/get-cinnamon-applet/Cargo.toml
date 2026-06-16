@@ -1,0 +1,12 @@
+[package]
+name = "get-cinnamon-applet"
+version = "0.1.0"
+edition = "2021"
+description = "List the enabled Cinnamon panel applets."
+
+[[bin]]
+name = "get-cinnamon-applet"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }

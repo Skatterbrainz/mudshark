@@ -1,0 +1,12 @@
+[package]
+name = "get-process"
+version = "0.1.0"
+edition = "2021"
+description = "Report running processes from ps."
+
+[[bin]]
+name = "get-process"
+path = "src/main.rs"
+
+[dependencies]
+mudshark-core = { path = "../mudshark-core" }
